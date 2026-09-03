@@ -83,7 +83,7 @@
 </main><script data-video-preview-controller>
 document.querySelectorAll('.video-card video').forEach((video,index)=>{
  const shell=document.createElement('div');shell.className='video-preview-shell';
- const image=document.createElement('img');image.className='video-poster-image';image.src=video.getAttribute('poster');image.alt='视频素材缩略图 '+(index+1);
+ const image=document.createElement('img');image.className='video-poster-image';image.loading='eager';image.decoding='sync';image.src=video.getAttribute('poster');image.alt='视频素材缩略图 '+(index+1);
  const button=document.createElement('button');button.className='video-play-button';button.type='button';button.textContent='▶ 播放视频';button.setAttribute('aria-label','播放视频素材 '+(index+1));
  video.parentNode.insertBefore(shell,video);shell.append(image,button,video);
  button.addEventListener('click',()=>{shell.classList.add('is-playing');video.load();const started=performance.now();video.play().catch(()=>{});video.addEventListener('playing',()=>{video.dataset.startupMs=String(Math.round(performance.now()-started));},{once:true});});
